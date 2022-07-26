@@ -1,5 +1,14 @@
+import GlobalStyles from "./styles/GlobalStyles";
+
+import { Layout } from "./components/Layout";
+
 function App() {
-  return <div className="App"></div>;
+  return (
+    <>
+      <GlobalStyles />
+      <Layout />
+    </>
+  );
 }
 
 export default App;
