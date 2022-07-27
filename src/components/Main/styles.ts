@@ -5,6 +5,7 @@ import { Timer, UserFriends, Profile } from "../../styles/Icons";
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
+  position: relative;
 
   width: min(1024px, 100%);
   height: 100vh;
@@ -76,12 +77,11 @@ export const Level = styled.div`
   justify-content: center;
   align-items: center;
 
-  font-size: 0.8rem;
+  font-size: 0.75rem;
 `;
 
 export const Scramble = styled.div`
-  display: flex;
-  justify-content: center;
+  text-align: center;
 
   font-size: 1.85rem;
   letter-spacing: 0.15rem;
@@ -100,7 +100,7 @@ export const TimerDisplay = styled.div`
   display: flex;
   justify-content: center;
 
-  margin: 4.5rem 0;
+  margin: 1rem 0 1.5rem;
 
   @media (min-width: 576px) {
     font-size: 10rem;
@@ -119,7 +119,7 @@ export const Average = styled.div`
   gap: 1rem;
 
   > span {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
 
     @media (min-width: 576px) {
       font-size: 2rem;
@@ -135,6 +135,7 @@ export const BottomMenu = styled.div`
 
   width: 100%;
   border-top: 1px solid #ddd;
+  background-color: blue;
 
   display: flex;
   justify-content: space-between;

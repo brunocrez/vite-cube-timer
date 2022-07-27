@@ -16,6 +16,8 @@ import {
 
 import BrasilFlag from "../../assets/flags/brasil.png";
 
+import { TimeListTable } from "../TimeListTable";
+
 export function Main() {
   return (
     <Container>
@@ -40,6 +42,8 @@ export function Main() {
         <span>ao12: 18.99</span>
         <span>ao100: 12.99</span>
       </Average>
+
+      <TimeListTable />
 
       <BottomMenu>
         <TimerIcon />
