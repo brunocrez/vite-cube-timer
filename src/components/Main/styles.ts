@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-import { Home } from "../../styles/Icons";
+import { Timer, UserFriends, Profile } from "../../styles/Icons";
 
 export const Container = styled.div`
   display: flex;
@@ -11,8 +11,8 @@ export const Container = styled.div`
   background-color: var(--primary);
 
   @media (min-width: 576px) {
-    border-left: 1px solid yellow;
-    border-right: 1px solid yellow;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
   }
 `;
 
@@ -94,7 +94,7 @@ export const Scramble = styled.div`
   }
 `;
 
-export const Timer = styled.div`
+export const TimerDisplay = styled.div`
   font-size: 6rem;
 
   display: flex;
@@ -133,8 +133,8 @@ export const BottomMenu = styled.div`
   left: 0;
   z-index: 2;
 
-  background: purple;
   width: 100%;
+  border-top: 1px solid #ddd;
 
   display: flex;
   justify-content: space-between;
@@ -153,10 +153,19 @@ const iconCSS = css`
   cursor: pointer;
 
   &:hover {
-    fill: white;
+    background-color: #ccc;
+    border-radius: 0.5rem;
   }
 `;
 
-export const HomeIcon = styled(Home)`
+export const TimerIcon = styled(Timer)`
+  ${iconCSS}
+`;
+
+export const FriendshipIcon = styled(UserFriends)`
+  ${iconCSS}
+`;
+
+export const ProfileIcon = styled(Profile)`
   ${iconCSS}
 `;

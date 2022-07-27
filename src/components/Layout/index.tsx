@@ -7,7 +7,7 @@ export function Layout() {
   return (
     <Container>
       <Wrapper>
-        {/* <MenuBar /> */}
+        <MenuBar />
         <Main />
       </Wrapper>
     </Container>

@@ -1,12 +1,31 @@
-import { Container, MenuButton, HomeIcon } from "./styles";
+import {
+  Container,
+  IconsWrapper,
+  MenuButton,
+  Logo,
+  TimerIcon,
+  FriendshipIcon,
+  ProfileIcon,
+} from "./styles";
 
 export function MenuBar() {
   return (
     <Container>
-      <MenuButton>
-        <HomeIcon />
-        <span>Página Inicial</span>
-      </MenuButton>
+      <IconsWrapper>
+        <Logo />
+        <MenuButton>
+          <TimerIcon />
+          <span>Timer</span>
+        </MenuButton>
+        <MenuButton>
+          <FriendshipIcon />
+          <span>Friendship</span>
+        </MenuButton>
+        <MenuButton>
+          <ProfileIcon />
+          <span>Profile</span>
+        </MenuButton>
+      </IconsWrapper>
     </Container>
   );
 }

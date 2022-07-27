@@ -6,10 +6,12 @@ import {
   ExperienceBar,
   ExperienceInfo,
   Scramble,
-  Timer,
+  TimerDisplay,
   Average,
   BottomMenu,
-  HomeIcon,
+  TimerIcon,
+  FriendshipIcon,
+  ProfileIcon,
 } from "./styles";
 
 import BrasilFlag from "../../assets/flags/brasil.png";
@@ -31,7 +33,7 @@ export function Main() {
       </Header>
       <Scramble>F B2 L2 D L B R F U2 F2 B U2 D2 R2 U2 B R2 U</Scramble>
 
-      <Timer>26.89</Timer>
+      <TimerDisplay>26.89</TimerDisplay>
 
       <Average>
         <span>ao5: 12.99</span>
@@ -40,10 +42,9 @@ export function Main() {
       </Average>
 
       <BottomMenu>
-        <HomeIcon />
-        <HomeIcon />
-        <HomeIcon />
-        <HomeIcon />
+        <TimerIcon />
+        <FriendshipIcon />
+        <ProfileIcon />
       </BottomMenu>
     </Container>
   );
