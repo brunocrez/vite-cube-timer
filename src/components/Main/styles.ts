@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+
 import { Home } from "../../styles/Icons";
 
 export const Container = styled.div`
@@ -6,9 +7,10 @@ export const Container = styled.div`
   flex-direction: column;
 
   width: min(1024px, 100%);
-  background-color: green;
+  height: 100vh;
+  background-color: var(--primary);
 
-  @media (min-width: 500px) {
+  @media (min-width: 576px) {
     border-left: 1px solid yellow;
     border-right: 1px solid yellow;
   }
@@ -22,15 +24,50 @@ export const Header = styled.div`
 
   display: flex;
   align-items: center;
-  padding: 1rem 0.75rem;
+  justify-content: space-around;
+  gap: 1.25rem;
 
-  text-align: left;
+  padding: 1rem 0.75rem;
+`;
+
+export const ProfileInfo = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  > strong {
+    font-size: 1.15rem;
+  }
+
+  > img {
+    width: 22px;
+    height: 22px;
+  }
+`;
+
+export const ExperienceInfo = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+`;
+
+export const ExperienceBar = styled.div`
+  width: 6rem;
+  height: 0.5rem;
+  background: #ddd;
+
+  > div {
+    width: 84%;
+    height: 100%;
+
+    background-color: red;
+  }
 `;
 
 export const Level = styled.div`
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
 
   background: black;
   color: white;
@@ -38,57 +75,40 @@ export const Level = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-`;
 
-export const ProfileInfo = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-left: 1rem;
-
-  > strong {
-    font-size: 1.25rem;
-  }
-`;
-
-export const ExperienceBar = styled.div`
-  width: 100%;
-  height: 1rem;
-  background: #ddd;
-  border-radius: 0.5rem;
-  overflow: hidden;
-
-  > div {
-    width: 84%;
-    height: 100%;
-    padding-right: 0.5rem;
-    font-size: 0.75rem;
-
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-
-    background-color: red;
-  }
+  font-size: 0.8rem;
 `;
 
 export const Scramble = styled.div`
   display: flex;
   justify-content: center;
 
-  font-size: 2.15rem;
+  font-size: 1.85rem;
   letter-spacing: 0.15rem;
 
   padding: 0.75rem;
   margin: 1rem;
+
+  @media (min-width: 1024px) {
+    font-size: 2.15rem;
+  }
 `;
 
 export const Timer = styled.div`
-  font-size: 12rem;
+  font-size: 6rem;
 
   display: flex;
   justify-content: center;
 
   margin: 4.5rem 0;
+
+  @media (min-width: 576px) {
+    font-size: 10rem;
+  }
+
+  @media (min-width: 768px) {
+    font-size: 12rem;
+  }
 `;
 
 export const Average = styled.div`
@@ -99,7 +119,11 @@ export const Average = styled.div`
   gap: 1rem;
 
   > span {
-    font-size: 2rem;
+    font-size: 1.5rem;
+
+    @media (min-width: 576px) {
+      font-size: 2rem;
+    }
   }
 `;
 
@@ -117,7 +141,7 @@ export const BottomMenu = styled.div`
 
   padding: 0.5rem min(4rem, max(10vw, 1rem));
 
-  @media (min-width: 500px) {
+  @media (min-width: 576px) {
     display: none;
   }
 `;

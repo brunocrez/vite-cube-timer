@@ -5,20 +5,26 @@ export default createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
+    color: var(--white);
   }
   
-  html, body, #root {
+  html, body {
     max-height: 100vh;
     max-width: 100vw;
     
     width: 100%;
     height: 100%;
+  }
 
-    font-family: sans-serif;
+  *, button, input {
+    border: 0;
+    background: none;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
   }
 
   html {
-    background: var(---primary);
+    background: var(--primary);
   }
 
   :root {

@@ -5,8 +5,8 @@ import { Layout } from "./components/Layout";
 function App() {
   return (
     <>
-      <GlobalStyles />
       <Layout />
+      <GlobalStyles />
     </>
   );
 }

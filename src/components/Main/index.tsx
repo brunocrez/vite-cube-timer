@@ -4,6 +4,7 @@ import {
   Level,
   ProfileInfo,
   ExperienceBar,
+  ExperienceInfo,
   Scramble,
   Timer,
   Average,
@@ -11,17 +12,22 @@ import {
   HomeIcon,
 } from "./styles";
 
+import BrasilFlag from "../../assets/flags/brasil.png";
+
 export function Main() {
   return (
     <Container>
       <Header>
-        <Level>18</Level>
         <ProfileInfo>
-          <strong>Bruno Rezende</strong>
-          <ExperienceBar>
-            <div>84%</div>
-          </ExperienceBar>
+          <strong>brunocrez</strong>
+          <img src={BrasilFlag} alt="Flag" />
         </ProfileInfo>
+        <ExperienceInfo>
+          <ExperienceBar>
+            <div></div>
+          </ExperienceBar>
+          <Level>42</Level>
+        </ExperienceInfo>
       </Header>
       <Scramble>F B2 L2 D L B R F U2 F2 B U2 D2 R2 U2 B R2 U</Scramble>
 
