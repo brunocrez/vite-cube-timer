@@ -118,6 +118,10 @@ export const Average = styled.div`
   align-items: center;
   gap: 1rem;
 
+  @media (min-height: 700px) {
+    margin-bottom: 3.25rem;
+  }
+
   > span {
     font-size: 1.25rem;
 

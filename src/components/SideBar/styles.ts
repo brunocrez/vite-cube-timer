@@ -6,6 +6,7 @@ export const Container = styled.div`
   @media (min-width: 768px) {
     display: flex;
     flex-direction: column;
+    gap: 1rem;
 
     position: sticky;
     top: 0;
@@ -16,4 +17,11 @@ export const Container = styled.div`
   }
 `;
 
-export const SessionTimes = styled.div``;
+export const Wrapper = styled.div`
+  max-height: 100vh;
+  overflow: auto;
+
+  ::-webkit-scrollbar {
+    width: 0;
+  }
+`;

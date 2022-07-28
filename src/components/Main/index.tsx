@@ -17,6 +17,7 @@ import {
 import BrasilFlag from "../../assets/flags/brasil.png";
 
 import { TimeListTable } from "../TimeListTable";
+import { TableWrapper } from "../TableWrapper/styles";
 
 export function Main() {
   return (
@@ -24,7 +25,7 @@ export function Main() {
       <Header>
         <ProfileInfo>
           <strong>brunocrez</strong>
-          <img src={BrasilFlag} alt="Flag" />
+          <img src={BrasilFlag} alt="flag" />
         </ProfileInfo>
         <ExperienceInfo>
           <ExperienceBar>
@@ -43,7 +44,9 @@ export function Main() {
         <span>ao100: 12.99</span>
       </Average>
 
-      <TimeListTable />
+      <TableWrapper>
+        <TimeListTable />
+      </TableWrapper>
 
       <BottomMenu>
         <TimerIcon />
