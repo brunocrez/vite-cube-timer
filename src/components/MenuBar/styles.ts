@@ -33,7 +33,7 @@ export const Logo = styled(PuzzleCube)`
   width: 50px;
   height: 50px;
   margin-bottom: 2rem;
-  fill: blue;
+  fill: var(--dark-blue);
   align-self: center;
 `;
 
@@ -68,7 +68,7 @@ export const MenuButton = styled.button`
   border-radius: 1.5rem;
 
   &:hover {
-    background-color: #ddd;
+    background-color: var(--dark-blue);
   }
 `;
 

@@ -11,7 +11,7 @@ export const Table = styled.table<TableProps>`
   height: 100%;
   max-height: 10rem;
 
-  border: 1px solid ${(props) => props.borderColor};
+  border: 1px ${(props) => props.borderColor};
   border-style: ${(props) => props.borderStyle};
 
   th,
@@ -19,10 +19,12 @@ export const Table = styled.table<TableProps>`
     padding: 0.25rem;
     font-size: 1.05rem;
     text-align: center;
+    background: var(--dark-blue);
+    color: var(--light-grey);
   }
 
   th {
-    color: var(--primary);
-    background: #ccc;
+    color: var(--light-grey);
+    background: var(--dark-blue);
   }
 `;

@@ -12,8 +12,8 @@ export const Container = styled.div`
   background-color: var(--primary);
 
   @media (min-width: 576px) {
-    border-left: 1px solid #ddd;
-    border-right: 1px solid #ddd;
+    border-left: 1px solid var(--dark-blue);
+    border-right: 1px solid var(--dark-blue);
   }
 `;
 
@@ -21,7 +21,7 @@ export const Header = styled.div`
   z-index: 2;
   position: sticky;
   top: 0;
-  background: blue;
+  background-color: var(--dark-blue);
 
   display: flex;
   align-items: center;
@@ -55,13 +55,15 @@ export const ExperienceInfo = styled.div`
 export const ExperienceBar = styled.div`
   width: 6rem;
   height: 0.5rem;
-  background: #ddd;
+  background: var(--light-grey);
+  border-radius: 0.25rem;
+  overflow: hidden;
 
   > div {
     width: 84%;
     height: 100%;
 
-    background-color: red;
+    background-color: var(--medium-blue);
   }
 `;
 
@@ -70,8 +72,8 @@ export const Level = styled.div`
   height: 28px;
   border-radius: 6px;
 
-  background: black;
-  color: white;
+  background-color: var(--medium-blue);
+  color: var(--white);
 
   display: flex;
   justify-content: center;
@@ -138,8 +140,8 @@ export const BottomMenu = styled.div`
   z-index: 2;
 
   width: 100%;
-  border-top: 1px solid #ddd;
-  background-color: blue;
+  border-top: 1px solid var(--dark-blue);
+  background-color: var(--dark-blue);
 
   display: flex;
   justify-content: space-between;
@@ -158,7 +160,8 @@ const iconCSS = css`
   cursor: pointer;
 
   &:hover {
-    background-color: #ccc;
+    background-color: var(--primary);
+    padding: 0.25rem;
     border-radius: 0.5rem;
   }
 `;

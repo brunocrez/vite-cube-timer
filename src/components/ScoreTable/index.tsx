@@ -2,10 +2,10 @@ import { Table } from "../Table/styles";
 
 export function ScoreTable() {
   return (
-    <Table borderColor="blue" borderStyle="dotted">
+    <Table borderColor="var(--medium-blue)" borderStyle="solid">
       <thead>
         <tr>
-          <th>-</th>
+          <th></th>
           <th>current</th>
           <th>best</th>
         </tr>

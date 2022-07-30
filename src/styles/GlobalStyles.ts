@@ -6,7 +6,7 @@ export default createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
 
-    color: var(--white);
+    color: var(--light-grey);
   }
   
   html, body {
@@ -28,7 +28,11 @@ export default createGlobalStyle`
   }
 
   :root {
-    --primary: #000;
+    --primary: #04080F;
     --white: #FFF;
+    --dark-blue: #385E94;
+    --medium-blue: #A1C6EA;
+    --light-blue: #BBD1EA;
+    --light-grey: #DAE3E5;
   }
 `;
