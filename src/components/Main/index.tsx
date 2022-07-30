@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 import {
   Container,
   Header,
@@ -12,14 +14,44 @@ import {
   TimerIcon,
   FriendshipIcon,
   ProfileIcon,
+  RefreshIcon,
 } from "./styles";
+
+import _ from "lodash";
 
 import BrasilFlag from "../../assets/flags/brasil.png";
 
 import { TimeListTable } from "../TimeListTable";
 import { TableWrapper } from "../TableWrapper/styles";
 
+import { ALLOWED_MOVES_LIST as MOVES_LIST } from "../../utils";
+
 export function Main() {
+  const [shuffle, setShuffle] = useState<string>("");
+
+  useEffect(() => {
+    generateScramble();
+  }, []);
+
+  function generateScramble(): string {
+    const scramble: string[] = [];
+    let sample = "";
+
+    for (let i = 0; i < 20; i++) {
+      sample = _.sample(MOVES_LIST) as string;
+
+      while (sample?.charAt(0) === scramble[i - 1]?.charAt(0)) {
+        sample = _.sample(MOVES_LIST) as string;
+      }
+
+      scramble.push(sample);
+    }
+
+    setShuffle(scramble.join(" "));
+
+    return shuffle;
+  }
+
   return (
     <Container>
       <Header>
@@ -34,7 +66,10 @@ export function Main() {
           <Level>42</Level>
         </ExperienceInfo>
       </Header>
-      <Scramble>F B2 L2 D L B R F U2 F2 B U2 D2 R2 U2 B R2 U</Scramble>
+      <Scramble>
+        {/* <RefreshIcon onClick={() => generateScramble()} /> */}
+        {shuffle}
+      </Scramble>
 
       <TimerDisplay>26.89</TimerDisplay>
 

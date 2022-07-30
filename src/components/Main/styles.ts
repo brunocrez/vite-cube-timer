@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-import { Timer, UserFriends, Profile } from "../../styles/Icons";
+import { Timer, UserFriends, Profile, Refresh } from "../../styles/Icons";
 
 export const Container = styled.div`
   display: flex;
@@ -83,6 +83,10 @@ export const Level = styled.div`
 `;
 
 export const Scramble = styled.div`
+  /* display: flex;
+  justify-content: space-between;
+  gap: 1rem; */
+
   text-align: center;
 
   font-size: 1.85rem;
@@ -90,10 +94,6 @@ export const Scramble = styled.div`
 
   padding: 0.75rem;
   margin: 1rem;
-
-  @media (min-width: 1024px) {
-    font-size: 2.15rem;
-  }
 `;
 
 export const TimerDisplay = styled.div`
@@ -175,5 +175,9 @@ export const FriendshipIcon = styled(UserFriends)`
 `;
 
 export const ProfileIcon = styled(Profile)`
+  ${iconCSS}
+`;
+
+export const RefreshIcon = styled(Refresh)`
   ${iconCSS}
 `;
