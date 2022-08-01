@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import {
   Container,
@@ -101,7 +101,11 @@ export function Main() {
       </Scramble>
 
       <TimerDisplay>
-        <Stopwatch keyPressed={keyPressed} genScramble={setShouldGenScramble} />
+        <Stopwatch
+          keyPressed={keyPressed}
+          genScramble={setShouldGenScramble}
+          currentScramble={shuffle}
+        />
       </TimerDisplay>
 
       <Average>

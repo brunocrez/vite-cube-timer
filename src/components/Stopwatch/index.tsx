@@ -1,13 +1,20 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import {
+  ITimeListContext,
+  TimeListContext,
+} from "../../contexts/TimeListContext";
 
 interface StopwatchProps {
   keyPressed: KeyboardEvent | null;
   genScramble: React.Dispatch<React.SetStateAction<boolean>>;
+  currentScramble: string;
 }
 
 export function Stopwatch(props: StopwatchProps) {
   const [time, setTime] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
+
+  const { addTime } = useContext(TimeListContext) as ITimeListContext;
 
   useEffect(() => {
     if (isRunning && props.keyPressed?.key === " ") {
