@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-import { Timer, UserFriends, Profile, Refresh } from "../../styles/Icons";
+import { Timer, UserFriends, Profile, Refresh, Copy } from "../../styles/Icons";
 
 export const Container = styled.div`
   display: flex;
@@ -83,9 +83,11 @@ export const Level = styled.div`
 `;
 
 export const Scramble = styled.div`
-  /* display: flex;
-  justify-content: space-between;
-  gap: 1rem; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
 
   text-align: center;
 
@@ -93,7 +95,21 @@ export const Scramble = styled.div`
   letter-spacing: 0.15rem;
 
   padding: 0.75rem;
-  margin: 1rem;
+  margin: 0.5rem;
+
+  > div {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    span {
+      font-size: 0.75rem;
+    }
+  }
+
+  @media (max-width: 380px) {
+    font-size: 1.25rem;
+  }
 `;
 
 export const TimerDisplay = styled.div`
@@ -178,6 +194,31 @@ export const ProfileIcon = styled(Profile)`
   ${iconCSS}
 `;
 
+const scrambleIconCSS = css`
+  width: 45px;
+  height: 45px;
+  padding: 0.25rem;
+
+  border: 1px solid var(--medium-blue);
+  border-radius: 0.5rem;
+
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--light-blue);
+    fill: var(--primary);
+  }
+
+  @media (max-width: 380px) {
+    width: 30px;
+    height: 30px;
+  }
+`;
+
 export const RefreshIcon = styled(Refresh)`
-  ${iconCSS}
+  ${scrambleIconCSS}
+`;
+
+export const CopyIcon = styled(Copy)`
+  ${scrambleIconCSS}
 `;
