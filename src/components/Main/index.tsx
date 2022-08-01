@@ -32,6 +32,7 @@ export function Main() {
   const [shuffle, setShuffle] = useState<string>("");
   const [isCopied, setIsCopied] = useState<boolean>(false);
   const [keyPressed, setKeyPressed] = useState<KeyboardEvent | null>(null);
+  const [shouldGenScramble, setShouldGenScramble] = useState(false);
 
   useEffect(() => {
     generateScramble();
@@ -39,6 +40,12 @@ export function Main() {
     document.addEventListener("keydown", handleKeyDown);
     return () => removeEventListener("keydown", handleKeyDown);
   }, []);
+
+  useEffect(() => {
+    if (shouldGenScramble) {
+      generateScramble();
+    }
+  }, [shouldGenScramble]);
 
   function generateScramble(): void {
     const scramble: string[] = [];
@@ -94,7 +101,7 @@ export function Main() {
       </Scramble>
 
       <TimerDisplay>
-        <Stopwatch keyPressed={keyPressed} />
+        <Stopwatch keyPressed={keyPressed} genScramble={setShouldGenScramble} />
       </TimerDisplay>
 
       <Average>

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 interface StopwatchProps {
   keyPressed: KeyboardEvent | null;
+  genScramble: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export function Stopwatch(props: StopwatchProps) {
@@ -11,9 +12,11 @@ export function Stopwatch(props: StopwatchProps) {
   useEffect(() => {
     if (isRunning && props.keyPressed?.key === " ") {
       setIsRunning(false);
+      props.genScramble(true);
     } else if (!isRunning && props.keyPressed?.key === " ") {
       setTime(0);
       setIsRunning(true);
+      props.genScramble(false);
     }
   }, [props.keyPressed]);
 
