@@ -1,8 +1,13 @@
 import { useContext, useEffect, useState } from "react";
-import {
-  ITimeListContext,
-  TimeListContext,
-} from "../../contexts/TimeListContext";
+
+// types
+import { ITime, ITimeListContext } from "../../@types/timeList";
+
+// context
+import { TimeListContext } from "../../contexts/TimeListContext";
+
+// utils
+import { numberToStopwatch } from "../../utils";
 
 interface StopwatchProps {
   keyPressed: KeyboardEvent | null;
@@ -20,6 +25,12 @@ export function Stopwatch(props: StopwatchProps) {
     if (isRunning && props.keyPressed?.key === " ") {
       setIsRunning(false);
       props.genScramble(true);
+      const data: ITime = {
+        numberTime: time,
+        scramble: props.currentScramble,
+        stringTime: numberToStopwatch(time),
+      };
+      addTime(data);
     } else if (!isRunning && props.keyPressed?.key === " ") {
       setTime(0);
       setIsRunning(true);
@@ -38,15 +49,5 @@ export function Stopwatch(props: StopwatchProps) {
     return () => clearInterval(interval);
   }, [isRunning]);
 
-  return (
-    <div>
-      <div>
-        {Math.floor((time / 60000) % 60) >= 1 && (
-          <span>{("0" + Math.floor((time / 60000) % 60)).slice(-2)}:</span>
-        )}
-        <span>{("0" + Math.floor((time / 1000) % 60)).slice(-2)}:</span>
-        <span>{("0" + ((time / 10) % 100)).slice(-2)}</span>
-      </div>
-    </div>
-  );
+  return <span>{numberToStopwatch(time)}</span>;
 }
