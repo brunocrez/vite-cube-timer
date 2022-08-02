@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 import { ITime, ITimeListContext } from "../../@types/timeList";
 import { numberToStopwatch } from "../../utils";
@@ -12,77 +12,110 @@ interface TimeListProviderProps {
 export function TimeListProvider(props: TimeListProviderProps) {
   const [timeList, setTimeList] = useState<ITime[]>([]);
 
-  const addTime = (time: ITime) => {
-    setTimeList((prevState) => [...prevState, time]);
+  const calcAverage3 = () => {
+    let sum = 0;
+
+    if (timeList.length < 3) {
+      return "-";
+    }
+
+    for (let i = timeList.length - 1; i > timeList.length - 4; i--) {
+      sum = sum + timeList[i].numberTime;
+    }
+
+    return numberToStopwatch(sum / 3);
   };
 
-  const averageOf = (num: number, idx = 0): string => {
-    const listSize = timeList.length;
+  const calcAverage5 = (idx: number) => {
     let sum = 0;
     let min = 0;
     let max = 0;
 
-    if (listSize < 3) {
+    if (timeList.length < 5 || idx < 4) {
       return "-";
     }
 
-    if (num === 3) {
-      for (let i = timeList.length - 1; i > listSize - 4; i--) {
-        sum = sum + timeList[i].numberTime;
+    for (let i = idx; i > idx - 5; i--) {
+      if (timeList[i].numberTime < min) {
+        min = timeList[i].numberTime;
       }
 
-      return numberToStopwatch(sum / 3);
+      if (timeList[i].numberTime > max) {
+        max = timeList[i].numberTime;
+      }
+
+      sum = sum + timeList[i].numberTime;
     }
 
-    if (num === 5) {
-      if (listSize < 5 || idx < 4) {
-        return "-";
-      }
+    sum = sum - min - max;
+    return numberToStopwatch(sum / 3);
+  };
 
-      for (let i = idx; i > idx - 5; i--) {
-        if (timeList[i].numberTime < min) {
-          min = timeList[i].numberTime;
-        }
+  const calcAverage12 = (idx: number) => {
+    let sum = 0;
+    let min = 0;
+    let max = 0;
 
-        if (timeList[i].numberTime > max) {
-          max = timeList[i].numberTime;
-        }
-
-        sum = sum + timeList[i].numberTime;
-      }
-
-      sum = sum - min - max;
-
-      return numberToStopwatch(sum / 3);
+    if (timeList.length < 12 || idx < 11) {
+      return "-";
     }
 
-    if (num === 12) {
-      if (listSize < 12 || idx < 11) {
-        return "-";
+    for (let i = idx; i > idx - 12; i--) {
+      if (timeList[i].numberTime < min) {
+        min = timeList[i].numberTime;
       }
 
-      for (let i = idx; i > idx - 12; i--) {
-        if (timeList[i].numberTime < min) {
-          min = timeList[i].numberTime;
-        }
-
-        if (timeList[i].numberTime > max) {
-          max = timeList[i].numberTime;
-        }
-
-        sum = sum + timeList[i].numberTime;
+      if (timeList[i].numberTime > max) {
+        max = timeList[i].numberTime;
       }
 
-      sum = sum - min - max;
-
-      return numberToStopwatch(sum / 10);
+      sum = sum + timeList[i].numberTime;
     }
 
-    return "-";
+    sum = sum - min - max;
+    return numberToStopwatch(sum / 10);
+  };
+
+  const calcAverage100 = (idx: number) => {
+    let sum = 0;
+    let min = 0;
+    let max = 0;
+
+    if (timeList.length < 100 || idx < 99) {
+      return "-";
+    }
+
+    for (let i = idx; i > idx - 100; i--) {
+      if (timeList[i].numberTime < min) {
+        min = timeList[i].numberTime;
+      }
+
+      if (timeList[i].numberTime > max) {
+        max = timeList[i].numberTime;
+      }
+
+      sum = sum + timeList[i].numberTime;
+    }
+
+    sum = sum - min - max;
+    return numberToStopwatch(sum / 98);
+  };
+
+  const addTime = (time: ITime) => {
+    setTimeList((prevState) => [...prevState, time]);
   };
 
   return (
-    <TimeListContext.Provider value={{ timeList, addTime, averageOf }}>
+    <TimeListContext.Provider
+      value={{
+        timeList,
+        addTime,
+        calcAverage3,
+        calcAverage5,
+        calcAverage12,
+        calcAverage100,
+      }}
+    >
       {props.children}
     </TimeListContext.Provider>
   );

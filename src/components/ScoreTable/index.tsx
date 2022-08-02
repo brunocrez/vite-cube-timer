@@ -8,9 +8,14 @@ import { ITimeListContext } from "../../@types/timeList";
 import { TimeListContext } from "../../contexts/TimeListContext";
 
 export function ScoreTable() {
-  const { averageOf, timeList } = useContext(
-    TimeListContext,
-  ) as ITimeListContext;
+  const {
+    timeList,
+    calcAverage3,
+    calcAverage5,
+    calcAverage12,
+    calcAverage100,
+  } = useContext(TimeListContext) as ITimeListContext;
+
   return (
     <Table borderColor="var(--medium-blue)" borderStyle="solid">
       <thead>
@@ -28,22 +33,22 @@ export function ScoreTable() {
         </tr>
         <tr>
           <th>ao3</th>
-          <td>{averageOf(3)}</td>
+          <td>{calcAverage3()}</td>
           <td>14.96</td>
         </tr>
         <tr>
           <th>ao5</th>
-          <td>{averageOf(5)}</td>
+          <td>{calcAverage5(timeList.length - 1)}</td>
           <td>14.96</td>
         </tr>
         <tr>
           <th>ao12</th>
-          <td>{averageOf(12)}</td>
+          <td>{calcAverage12(timeList.length - 1)}</td>
           <td>14.96</td>
         </tr>
         <tr>
           <th>ao100</th>
-          <td>-</td>
+          <td>{calcAverage100(timeList.length - 1)}</td>
           <td>14.96</td>
         </tr>
       </tbody>

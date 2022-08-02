@@ -8,7 +8,7 @@ import { ITimeListContext } from "../../@types/timeList";
 import { TimeListContext } from "../../contexts/TimeListContext";
 
 export function TimeListTable() {
-  const { timeList, averageOf } = useContext(
+  const { timeList, calcAverage5, calcAverage12 } = useContext(
     TimeListContext,
   ) as ITimeListContext;
 
@@ -19,18 +19,22 @@ export function TimeListTable() {
           <th></th>
           <th>time</th>
           <th>ao5</th>
+          <th>ao12</th>
         </tr>
       </thead>
       <tbody>
-        {timeList.map((time, idx) => {
-          return (
-            <tr key={idx}>
-              <th>{idx + 1}</th>
-              <td>{time.stringTime}</td>
-              <td>{averageOf(5, idx)}</td>
-            </tr>
-          );
-        })}
+        {timeList
+          .map((time, idx) => {
+            return (
+              <tr key={idx}>
+                <th>{idx + 1}</th>
+                <td>{time.stringTime}</td>
+                <td>{calcAverage5(idx)}</td>
+                <td>{calcAverage12(idx)}</td>
+              </tr>
+            );
+          })
+          .reverse()}
       </tbody>
     </Table>
   );

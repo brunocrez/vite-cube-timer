@@ -31,5 +31,9 @@ export function numberToStopwatch(time: number) {
   second = ("0" + Math.floor((time / 1000) % 60)).slice(-2);
   milisecond = ("0" + ((time / 10) % 100)).slice(-2);
 
+  if (milisecond.at(0) === ".") {
+    milisecond = milisecond.replace(".", "") + "0";
+  }
+
   return `${minute ? minute + ":" : ""}${second}:${milisecond}`;
 }

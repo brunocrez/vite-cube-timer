@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-
+import { TableWrapper } from "../TableWrapper/styles";
 import {
   Container,
   Header,
@@ -18,21 +18,30 @@ import {
   CopyIcon,
 } from "./styles";
 
-import _ from "lodash";
+// types
+import { ITimeListContext } from "../../@types/timeList";
 
-import BrasilFlag from "../../assets/flags/brasil.png";
+// context
+import { TimeListContext } from "../../contexts/TimeListContext";
 
+// components
 import { TimeListTable } from "../TimeListTable";
-import { TableWrapper } from "../TableWrapper/styles";
-
-import { ALLOWED_MOVES_LIST as MOVES_LIST } from "../../utils";
 import { Stopwatch } from "../Stopwatch";
+
+// 3rd lib & utils
+import { ALLOWED_MOVES_LIST as MOVES_LIST } from "../../utils";
+import _ from "lodash";
+import BrasilFlag from "../../assets/flags/brasil.png";
 
 export function Main() {
   const [shuffle, setShuffle] = useState<string>("");
   const [isCopied, setIsCopied] = useState<boolean>(false);
   const [keyPressed, setKeyPressed] = useState<KeyboardEvent | null>(null);
   const [shouldGenScramble, setShouldGenScramble] = useState(false);
+
+  const { timeList, calcAverage5, calcAverage12, calcAverage100 } = useContext(
+    TimeListContext,
+  ) as ITimeListContext;
 
   useEffect(() => {
     generateScramble();
@@ -109,9 +118,9 @@ export function Main() {
       </TimerDisplay>
 
       <Average>
-        <span>ao5: 12.99</span>
-        <span>ao12: 18.99</span>
-        <span>ao100: 12.99</span>
+        <span>ao5: {calcAverage5(timeList.length - 1)}</span>
+        <span>ao12: {calcAverage12(timeList.length - 1)}</span>
+        <span>ao100: {calcAverage100(timeList.length - 1)}</span>
       </Average>
 
       <TableWrapper>
