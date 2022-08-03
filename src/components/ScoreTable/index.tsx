@@ -1,8 +1,8 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Table } from "../Table/styles";
 
 // types
-import { ITimeListContext } from "../../@types/timeList";
+import { ITimeListContext, ITime, IAverageReturn } from "../../@types/timeList";
 
 // context
 import { TimeListContext } from "../../contexts/TimeListContext";
@@ -15,6 +15,25 @@ export function ScoreTable() {
     calcAverage12,
     calcAverage100,
   } = useContext(TimeListContext) as ITimeListContext;
+
+  const [average3, setAverage3] = useState<IAverageReturn>({
+    stringAverage: "-",
+    numberAverage: 0,
+  });
+
+  const [bestSingle, setBestSingle] = useState<ITime>({
+    scramble: "",
+    numberTime: Number.MAX_VALUE,
+    stringTime: "-",
+  });
+
+  useEffect(() => {
+    if (timeList[timeList.length - 1]?.numberTime < bestSingle?.numberTime) {
+      setBestSingle(timeList[timeList.length - 1]);
+    }
+
+    setAverage3(calcAverage3());
+  }, [timeList]);
 
   return (
     <Table borderColor="var(--medium-blue)" borderStyle="solid">
@@ -29,12 +48,12 @@ export function ScoreTable() {
         <tr>
           <th>time</th>
           <td>{timeList[timeList.length - 1]?.stringTime || "-"}</td>
-          <td>14.96</td>
+          <td>{bestSingle?.stringTime || "-"}</td>
         </tr>
         <tr>
           <th>ao3</th>
-          <td>{calcAverage3()}</td>
-          <td>14.96</td>
+          <td>{average3.stringAverage}</td>
+          <td>-</td>
         </tr>
         <tr>
           <th>ao5</th>

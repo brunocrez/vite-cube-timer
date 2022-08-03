@@ -16,14 +16,20 @@ export function TimeListProvider(props: TimeListProviderProps) {
     let sum = 0;
 
     if (timeList.length < 3) {
-      return "-";
+      return {
+        stringAverage: "-",
+        numberAverage: 0,
+      };
     }
 
     for (let i = timeList.length - 1; i > timeList.length - 4; i--) {
       sum = sum + timeList[i].numberTime;
     }
 
-    return numberToStopwatch(sum / 3);
+    return {
+      stringAverage: numberToStopwatch(sum / 3),
+      numberAverage: sum / 3,
+    };
   };
 
   const calcAverage5 = (idx: number) => {
