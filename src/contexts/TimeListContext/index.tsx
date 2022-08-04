@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 
 import { ITime, ITimeListContext } from "../../@types/timeList";
 import { numberToStopwatch } from "../../utils";
@@ -38,7 +38,10 @@ export function TimeListProvider(props: TimeListProviderProps) {
     let max = 0;
 
     if (timeList.length < 5 || idx < 4) {
-      return "-";
+      return {
+        stringAverage: "-",
+        numberAverage: 0,
+      };
     }
 
     for (let i = idx; i > idx - 5; i--) {
@@ -54,7 +57,11 @@ export function TimeListProvider(props: TimeListProviderProps) {
     }
 
     sum = sum - min - max;
-    return numberToStopwatch(sum / 3);
+
+    return {
+      stringAverage: numberToStopwatch(sum / 3),
+      numberAverage: sum / 3,
+    };
   };
 
   const calcAverage12 = (idx: number) => {
@@ -63,7 +70,10 @@ export function TimeListProvider(props: TimeListProviderProps) {
     let max = 0;
 
     if (timeList.length < 12 || idx < 11) {
-      return "-";
+      return {
+        stringAverage: "-",
+        numberAverage: 0,
+      };
     }
 
     for (let i = idx; i > idx - 12; i--) {
@@ -79,7 +89,11 @@ export function TimeListProvider(props: TimeListProviderProps) {
     }
 
     sum = sum - min - max;
-    return numberToStopwatch(sum / 10);
+
+    return {
+      stringAverage: numberToStopwatch(sum / 10),
+      numberAverage: sum / 10,
+    };
   };
 
   const calcAverage100 = (idx: number) => {
@@ -88,7 +102,10 @@ export function TimeListProvider(props: TimeListProviderProps) {
     let max = 0;
 
     if (timeList.length < 100 || idx < 99) {
-      return "-";
+      return {
+        stringAverage: "-",
+        numberAverage: 0,
+      };
     }
 
     for (let i = idx; i > idx - 100; i--) {
@@ -104,7 +121,11 @@ export function TimeListProvider(props: TimeListProviderProps) {
     }
 
     sum = sum - min - max;
-    return numberToStopwatch(sum / 98);
+
+    return {
+      stringAverage: numberToStopwatch(sum / 98),
+      numberAverage: sum / 98,
+    };
   };
 
   const addTime = (time: ITime) => {

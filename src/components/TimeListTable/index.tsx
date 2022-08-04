@@ -29,8 +29,8 @@ export function TimeListTable() {
               <tr key={idx}>
                 <th>{idx + 1}</th>
                 <td>{time.stringTime}</td>
-                <td>{calcAverage5(idx)}</td>
-                <td>{calcAverage12(idx)}</td>
+                <td>{calcAverage5(idx).stringAverage}</td>
+                <td>{calcAverage12(idx).stringAverage}</td>
               </tr>
             );
           })

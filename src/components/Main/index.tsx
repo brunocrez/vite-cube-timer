@@ -118,9 +118,9 @@ export function Main() {
       </TimerDisplay>
 
       <Average>
-        <span>ao5: {calcAverage5(timeList.length - 1)}</span>
-        <span>ao12: {calcAverage12(timeList.length - 1)}</span>
-        <span>ao100: {calcAverage100(timeList.length - 1)}</span>
+        <span>ao5: {calcAverage5(timeList.length - 1).stringAverage}</span>
+        <span>ao12: {calcAverage12(timeList.length - 1).stringAverage}</span>
+        <span>ao100: {calcAverage100(timeList.length - 1).stringAverage}</span>
       </Average>
 
       <TableWrapper>

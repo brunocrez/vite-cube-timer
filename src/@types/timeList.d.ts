@@ -13,7 +13,7 @@ export interface ITimeListContext {
   timeList: ITime[];
   addTime: (time: ITime) => void;
   calcAverage3: () => IAverageReturn;
-  calcAverage5: (idx: number) => string;
-  calcAverage12: (idx: number) => string;
-  calcAverage100: (idx: number) => string;
+  calcAverage5: (idx: number) => IAverageReturn;
+  calcAverage12: (idx: number) => IAverageReturn;
+  calcAverage100: (idx: number) => IAverageReturn;
 }
