@@ -1,7 +1,7 @@
 import { createContext, useState } from "react";
 
 import { ITime, ITimeListContext } from "../../@types/timeList";
-import { numberToStopwatch } from "../../utils";
+import { millisToTime } from "../../utils";
 
 export const TimeListContext = createContext<ITimeListContext | null>(null);
 
@@ -27,15 +27,15 @@ export function TimeListProvider(props: TimeListProviderProps) {
     }
 
     return {
-      stringAverage: numberToStopwatch(sum / 3),
+      stringAverage: millisToTime(sum / 3),
       numberAverage: sum / 3,
     };
   };
 
   const calcAverage5 = (idx: number) => {
     let sum = 0;
-    let min = 0;
-    let max = 0;
+    let min = Number.MAX_VALUE;
+    let max = Number.MIN_VALUE;
 
     if (timeList.length < 5 || idx < 4) {
       return {
@@ -59,15 +59,15 @@ export function TimeListProvider(props: TimeListProviderProps) {
     sum = sum - min - max;
 
     return {
-      stringAverage: numberToStopwatch(sum / 3),
+      stringAverage: millisToTime(sum / 3),
       numberAverage: sum / 3,
     };
   };
 
   const calcAverage12 = (idx: number) => {
     let sum = 0;
-    let min = 0;
-    let max = 0;
+    let min = Number.MAX_VALUE;
+    let max = Number.MIN_VALUE;
 
     if (timeList.length < 12 || idx < 11) {
       return {
@@ -91,15 +91,15 @@ export function TimeListProvider(props: TimeListProviderProps) {
     sum = sum - min - max;
 
     return {
-      stringAverage: numberToStopwatch(sum / 10),
+      stringAverage: millisToTime(sum / 10),
       numberAverage: sum / 10,
     };
   };
 
   const calcAverage100 = (idx: number) => {
     let sum = 0;
-    let min = 0;
-    let max = 0;
+    let min = Number.MAX_VALUE;
+    let max = Number.MIN_VALUE;
 
     if (timeList.length < 100 || idx < 99) {
       return {
@@ -123,7 +123,7 @@ export function TimeListProvider(props: TimeListProviderProps) {
     sum = sum - min - max;
 
     return {
-      stringAverage: numberToStopwatch(sum / 98),
+      stringAverage: millisToTime(sum / 98),
       numberAverage: sum / 98,
     };
   };
