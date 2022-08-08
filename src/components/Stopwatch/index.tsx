@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 
 // types
 import { ITime, ITimeListContext } from "../../@types/timeList";
@@ -10,7 +10,6 @@ import { TimeListContext } from "../../contexts/TimeListContext";
 import { numberToStopwatch } from "../../utils";
 
 interface StopwatchProps {
-  keyPressed: KeyboardEvent | null;
   genScramble: React.Dispatch<React.SetStateAction<boolean>>;
   currentScramble: string;
 }
@@ -18,11 +17,19 @@ interface StopwatchProps {
 export function Stopwatch(props: StopwatchProps) {
   const [time, setTime] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
+  const [timestamp, setTimestamp] = useState<number>(0);
 
   const { addTime } = useContext(TimeListContext) as ITimeListContext;
 
+  const timeRef = useRef(0);
+
+  // useEffect(() => {}, []);
+
   useEffect(() => {
-    if (isRunning && props.keyPressed?.key === " ") {
+    document.addEventListener("keydown", handleKeyDown);
+    document.addEventListener("keyup", handleKeyUp);
+
+    if (isRunning) {
       setIsRunning(false);
       props.genScramble(true);
       const data: ITime = {
@@ -31,15 +38,20 @@ export function Stopwatch(props: StopwatchProps) {
         stringTime: numberToStopwatch(time),
       };
       addTime(data);
-    } else if (!isRunning && props.keyPressed?.key === " ") {
+    } else if (!isRunning) {
       setTime(0);
       setIsRunning(true);
       props.genScramble(false);
     }
-  }, [props.keyPressed]);
+
+    return () => {
+      removeEventListener("keydown", handleKeyDown);
+      removeEventListener("keyup", handleKeyUp);
+    };
+  }, []);
 
   useEffect(() => {
-    let interval: number;
+    let interval: NodeJS.Timer;
     if (isRunning) {
       interval = setInterval(() => {
         setTime((prevTime) => prevTime + 10);
@@ -49,5 +61,27 @@ export function Stopwatch(props: StopwatchProps) {
     return () => clearInterval(interval);
   }, [isRunning]);
 
-  return <span>{numberToStopwatch(time)}</span>;
+  const handleKeyDown = (e: KeyboardEvent) => {
+    if (e.key !== " ") {
+      return;
+    }
+
+    timeRef.current = Date.now();
+    setTimestamp(Date.now());
+  };
+
+  const handleKeyUp = (e: KeyboardEvent) => {
+    if (e.key !== " ") {
+      return;
+    }
+
+    const pressed = timestamp;
+    const released = Date.now();
+
+    if (released - pressed < 2000) {
+      return;
+    }
+  };
+
+  return <span>...</span>;
 }

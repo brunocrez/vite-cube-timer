@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { TableWrapper } from "../TableWrapper/styles";
 import {
   Container,
@@ -29,14 +29,13 @@ import { TimeListTable } from "../TimeListTable";
 import { Stopwatch } from "../Stopwatch";
 
 // 3rd lib & utils
-import { ALLOWED_MOVES_LIST as MOVES_LIST } from "../../utils";
 import _ from "lodash";
+import { ALLOWED_MOVES_LIST as MOVES_LIST } from "../../utils";
 import BrasilFlag from "../../assets/flags/brasil.png";
 
 export function Main() {
   const [shuffle, setShuffle] = useState<string>("");
   const [isCopied, setIsCopied] = useState<boolean>(false);
-  const [keyPressed, setKeyPressed] = useState<KeyboardEvent | null>(null);
   const [shouldGenScramble, setShouldGenScramble] = useState(false);
 
   const { timeList, calcAverage5, calcAverage12, calcAverage100 } = useContext(
@@ -45,9 +44,6 @@ export function Main() {
 
   useEffect(() => {
     generateScramble();
-
-    document.addEventListener("keydown", handleKeyDown);
-    return () => removeEventListener("keydown", handleKeyDown);
   }, []);
 
   useEffect(() => {
@@ -82,10 +78,6 @@ export function Main() {
     }, 2 * 1000);
   }
 
-  function handleKeyDown(event: KeyboardEvent) {
-    setKeyPressed(event);
-  }
-
   return (
     <Container>
       <Header>
@@ -111,9 +103,8 @@ export function Main() {
 
       <TimerDisplay>
         <Stopwatch
-          keyPressed={keyPressed}
-          genScramble={setShouldGenScramble}
           currentScramble={shuffle}
+          genScramble={setShouldGenScramble}
         />
       </TimerDisplay>
 
