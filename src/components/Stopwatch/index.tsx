@@ -1,13 +1,13 @@
 import { useContext, useEffect, useRef, useState } from "react";
 
 // types
-import { ITime, ITimeListContext } from "../../@types/timeList";
+import { ITime, ITimeListContext } from "@/@types/timeList";
 
 // context
-import { TimeListContext } from "../../contexts/TimeListContext";
+import { TimeListContext } from "@/contexts/TimeListContext";
 
 // utils
-import { numberToStopwatch } from "../../utils";
+import { numberToStopwatch } from "@/utils";
 
 interface StopwatchProps {
   genScramble: React.Dispatch<React.SetStateAction<boolean>>;

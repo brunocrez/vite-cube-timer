@@ -8,8 +8,10 @@ import { ITimeListContext } from "@/@types/timeList";
 import { Layout } from "@/components/template/Layout";
 import { SideBar } from "@/components/template/SideBar";
 import { Stopwatch } from "@/components/Stopwatch";
-import { TableWrapper } from "@/components/TableWrapper/styles";
 import { TimeListTable } from "@/components/TimeListTable";
+import { ScoreTable } from "@/components/ScoreTable";
+import { Wrapper } from "@/components/template/SideBar/styles";
+import { TableWrapper } from "@/components/TableWrapper/styles";
 
 // context
 import { TimeListContext } from "@/contexts/TimeListContext";
@@ -113,7 +115,12 @@ export function Timer() {
           <S.ProfileIcon />
         </S.BottomMenu>
       </S.Container>
-      <SideBar />
+      <SideBar>
+        <ScoreTable />
+        <Wrapper>
+          <TimeListTable />
+        </Wrapper>
+      </SideBar>
     </Layout>
   );
 }

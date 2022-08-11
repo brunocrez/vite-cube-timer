@@ -1,15 +1,9 @@
-import { ScoreTable } from "@/components/ScoreTable";
-import { TimeListTable } from "@/components/TimeListTable";
+import { Container } from "./styles";
 
-import { Container, Wrapper } from "./styles";
+interface SideBarProps {
+  children: React.ReactNode;
+}
 
-export function SideBar() {
-  return (
-    <Container>
-      <ScoreTable />
-      <Wrapper>
-        <TimeListTable />
-      </Wrapper>
-    </Container>
-  );
+export function SideBar(props: SideBarProps) {
+  return <Container>{props.children}</Container>;
 }

@@ -1,11 +1,13 @@
 import { useContext, useEffect, useState } from "react";
-import { Table } from "../Table/styles";
 
 // types
-import { ITimeListContext, ITime, IAverageReturn } from "../../@types/timeList";
+import { ITimeListContext, ITime, IAverageReturn } from "@/@types/timeList";
 
 // context
-import { TimeListContext } from "../../contexts/TimeListContext";
+import { TimeListContext } from "@/contexts/TimeListContext";
+
+// components
+import { Table } from "@/components/Table/styles";
 
 const DEFAULT_AVERAGE = { stringAverage: "-", numberAverage: 0 };
 const DEFAULT_BEST_AVERAGE = {

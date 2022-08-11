@@ -27,6 +27,10 @@ export const IconsWrapper = styled.div`
   @media (min-width: 1200px) {
     align-items: flex-start;
   }
+
+  > a {
+    text-decoration: none;
+  }
 `;
 
 export const Logo = styled(PuzzleCube)`
@@ -44,6 +48,11 @@ export const MenuButton = styled.button`
 
   > span {
     display: none;
+  }
+
+  > div {
+    width: 30px;
+    height: 30px;
   }
 
   @media (min-width: 1200px) {

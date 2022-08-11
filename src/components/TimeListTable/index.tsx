@@ -1,11 +1,13 @@
 import { useContext } from "react";
-import { Table } from "../Table/styles";
 
 // types
-import { ITimeListContext } from "../../@types/timeList";
+import { ITimeListContext } from "@/@types/timeList";
 
 // contenxt
-import { TimeListContext } from "../../contexts/TimeListContext";
+import { TimeListContext } from "@/contexts/TimeListContext";
+
+// components
+import { Table } from "@/components/Table/styles";
 
 export function TimeListTable() {
   const { timeList, calcAverage5, calcAverage12 } = useContext(
