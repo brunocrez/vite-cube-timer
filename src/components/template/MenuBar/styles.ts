@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-import { PuzzleCube, Timer, UserFriends, Profile } from "../../styles/Icons";
+import { PuzzleCube, Timer, UserFriends, Profile } from "@/styles/Icons";
 
 export const Container = styled.div`
   display: none;

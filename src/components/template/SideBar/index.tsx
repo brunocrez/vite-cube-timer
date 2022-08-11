@@ -1,5 +1,5 @@
-import { ScoreTable } from "../ScoreTable";
-import { TimeListTable } from "../TimeListTable";
+import { ScoreTable } from "@/components/ScoreTable";
+import { TimeListTable } from "@/components/TimeListTable";
 
 import { Container, Wrapper } from "./styles";
 

@@ -12,7 +12,6 @@ import { numberToStopwatch } from "../../utils";
 interface StopwatchProps {
   genScramble: React.Dispatch<React.SetStateAction<boolean>>;
   currentScramble: string;
-  // keyPressed: KeyboardEvent | null;
 }
 
 export function Stopwatch(props: StopwatchProps) {

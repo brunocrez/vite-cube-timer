@@ -1,7 +1,10 @@
 import { createContext, useState } from "react";
 
-import { ITime, ITimeListContext } from "../../@types/timeList";
-import { millisToTime } from "../../utils";
+// types
+import { ITime, ITimeListContext } from "@/@types/timeList";
+
+// utils
+import { millisToTime } from "@/utils";
 
 export const TimeListContext = createContext<ITimeListContext | null>(null);
 
