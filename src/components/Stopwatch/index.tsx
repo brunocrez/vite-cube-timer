@@ -12,24 +12,33 @@ import { numberToStopwatch } from "../../utils";
 interface StopwatchProps {
   genScramble: React.Dispatch<React.SetStateAction<boolean>>;
   currentScramble: string;
+  // keyPressed: KeyboardEvent | null;
 }
 
 export function Stopwatch(props: StopwatchProps) {
   const [time, setTime] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
-  const [timestamp, setTimestamp] = useState<number>(0);
+  const [keyPressed, setKeyPressed] = useState<KeyboardEvent | null>(null);
+  const [releaseTimer, setReleaseTimer] = useState(false);
 
   const { addTime } = useContext(TimeListContext) as ITimeListContext;
 
-  const timeRef = useRef(0);
-
-  // useEffect(() => {}, []);
+  const timestamp = useRef(0);
 
   useEffect(() => {
     document.addEventListener("keydown", handleKeyDown);
     document.addEventListener("keyup", handleKeyUp);
 
-    if (isRunning) {
+    return () => {
+      removeEventListener("keydown", handleKeyDown);
+      removeEventListener("keyup", handleKeyUp);
+    };
+  }, []);
+
+  useEffect(() => {
+    const isSpaceBar = keyPressed?.key === " ";
+
+    if (isRunning && isSpaceBar) {
       setIsRunning(false);
       props.genScramble(true);
       const data: ITime = {
@@ -38,17 +47,12 @@ export function Stopwatch(props: StopwatchProps) {
         stringTime: numberToStopwatch(time),
       };
       addTime(data);
-    } else if (!isRunning) {
+    } else if (!isRunning && isSpaceBar && releaseTimer) {
       setTime(0);
       setIsRunning(true);
       props.genScramble(false);
     }
-
-    return () => {
-      removeEventListener("keydown", handleKeyDown);
-      removeEventListener("keyup", handleKeyUp);
-    };
-  }, []);
+  }, [keyPressed]);
 
   useEffect(() => {
     let interval: NodeJS.Timer;
@@ -61,27 +65,32 @@ export function Stopwatch(props: StopwatchProps) {
     return () => clearInterval(interval);
   }, [isRunning]);
 
-  const handleKeyDown = (e: KeyboardEvent) => {
+  function handleKeyDown(e: KeyboardEvent) {
+    setKeyPressed(e);
+    setReleaseTimer(false);
+
+    if (e.key !== " " || e.repeat) {
+      return;
+    }
+
+    timestamp.current = Date.now();
+  }
+
+  function handleKeyUp(e: KeyboardEvent) {
     if (e.key !== " ") {
       return;
     }
 
-    timeRef.current = Date.now();
-    setTimestamp(Date.now());
-  };
-
-  const handleKeyUp = (e: KeyboardEvent) => {
-    if (e.key !== " ") {
-      return;
-    }
-
-    const pressed = timestamp;
+    const pressed = timestamp.current;
     const released = Date.now();
 
-    if (released - pressed < 2000) {
+    if (released - pressed < 1000) {
       return;
     }
-  };
 
-  return <span>...</span>;
+    setKeyPressed(e);
+    setReleaseTimer(true);
+  }
+
+  return <span>{numberToStopwatch(time)}</span>;
 }
